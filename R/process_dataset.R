@@ -107,8 +107,7 @@ calc_errors <- function(dataset) {
 
   for (i in 1:length(dataset)) {
     lentry <- dataset[[i]]
-    dataset[[i]]$errors <- 0.5*(rowMeans(lentry$mase_err)/avg_snaive_errors$avg_mase +
-                                  rowMeans(lentry$smape_err)/avg_snaive_errors$avg_smape)
+    dataset[[i]]$errors <- lentry$mase_err
     #dataset[[i]]$errors <- rowMeans(lentry$smape_err)
   }
   attr(dataset, "avg_snaive_errors") <- avg_snaive_errors
