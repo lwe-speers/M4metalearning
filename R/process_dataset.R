@@ -70,7 +70,7 @@ calc_errors <- function(dataset) {
 
     #extrac forecasts and attach the snaive for completion
     ff <- lentry$ff
-    ff <- rbind(ff, naive_forec(insample, lentry$h))
+    ff <- rbind(ff, snaive_forec(insample, lentry$h))
 
     frq <- frq <- stats::frequency(insample)
     insample <- as.numeric(insample)
@@ -84,6 +84,8 @@ calc_errors <- function(dataset) {
 
     smape_err <- 200*abs(ff - repoutsample) / (abs(ff) + abs(repoutsample))
 
+    smape_err[is.na(smape_err)] <- 0
+    
     mase_err <- abs(ff - repoutsample) / masep
 
     lentry$snaive_mase <- mase_err[nrow(mase_err), ]
