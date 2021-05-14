@@ -47,7 +47,6 @@ mase_cal <- function(insample, outsample, forecasts) {
   }
   masep<-mean(abs(insample-forecastsNaiveSD),na.rm = TRUE)
   
-  if(masep == 0){masep <- 0.0000000000000000000000001}
 
   outsample <- as.numeric(outsample) ; forecasts <- as.numeric(forecasts)
   mase <- (abs(outsample-forecasts))/masep
@@ -79,6 +78,7 @@ calc_errors <- function(dataset) {
     outsample <- as.numeric(lentry$xx)
     masep <- mean(abs(utils::head(insample,-frq) - utils::tail(insample,-frq)))
 
+    if(masep == 0){masep <- 0.0000000000000000000000001}
 
     repoutsample <- matrix(
       rep(outsample, each=nrow(ff)),
