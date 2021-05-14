@@ -46,6 +46,8 @@ mase_cal <- function(insample, outsample, forecasts) {
     forecastsNaiveSD <- c(forecastsNaiveSD, insample[j-frq])
   }
   masep<-mean(abs(insample-forecastsNaiveSD),na.rm = TRUE)
+  
+  if(masep == 0){masep <- 0.0000000000000000000000001}
 
   outsample <- as.numeric(outsample) ; forecasts <- as.numeric(forecasts)
   mase <- (abs(outsample-forecasts))/masep
