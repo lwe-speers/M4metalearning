@@ -70,7 +70,7 @@ calc_errors <- function(dataset) {
 
     #extrac forecasts and attach the snaive for completion
     ff <- lentry$ff
-    ff <- rbind(ff, snaive_forec(insample, lentry$h))
+    ff <- rbind(ff, naive_forec(insample, lentry$h))
 
     frq <- frq <- stats::frequency(insample)
     insample <- as.numeric(insample)
